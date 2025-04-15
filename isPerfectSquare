@@ -1,0 +1,4 @@
+bool isPerfectSquare(ll num) {
+    ll root = sqrt(num);
+    return root * root == num;
+}
