@@ -1,0 +1,23 @@
+const int MAX = 1e6 + 1;
+int spf[MAX];
+
+// Precompute smallest prime factor
+void sieve() {
+    for (int i = 2; i < MAX; i++) {
+        if (!spf[i]) {
+            for (int j = i; j < MAX; j += i)
+                if (!spf[j]) spf[j] = i;
+        }
+    }
+}
+
+// Get square-free form of a number
+ll getSF(int x) {
+    ll res = 1;
+    while (x > 1) {
+        int p = spf[x], c = 0;
+        while (x % p == 0) x /= p, c++;
+        if (c % 2) res *= p;
+    }
+    return res;
+}
